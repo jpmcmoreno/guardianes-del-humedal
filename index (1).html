@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guardianes del Humedal | UNIMINUTO</title>
+<meta name="description" content="Guardianes del Humedal: Pequeñas acciones, grandes cambios. Proyecto de Formación Comunícate - UNIMINUTO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#2b8a4e;
+  --verde-osc:#1e6b3c;
+  --verde-claro:#e8f4ec;
+  --nav:#2a4a40;
+  --nav-osc:#1f3a32;
+  --texto:#1d2a24;
+  --gris:#5b6a63;
+  --blanco:#fff;
+  --sombra:0 6px 24px rgba(0,0,0,.18);
+  --radio:14px;
+  /* Cambia esta ruta por tu foto del humedal (ej. img/humedal.jpg) */
+  --fondo:url('img/humedal.jpg');
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--texto);background:#0f2a20;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ---------- HEADER ---------- */
+header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.header-in{max-width:1280px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo svg{width:52px;height:52px}
+.logo span{font-weight:800;font-size:1.05rem;line-height:1.05;color:var(--nav);letter-spacing:.5px}
+nav{background:var(--nav);border-radius:8px;box-shadow:var(--sombra)}
+nav ul{list-style:none;display:flex;flex-wrap:wrap}
+nav a{display:block;padding:10px 14px;color:#fff;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.3px;transition:.2s;border-radius:8px}
+nav a:hover{background:var(--nav-osc)}
+nav a.activo{color:#6fdc94}
+.burger{display:none;background:var(--nav);border:none;color:#fff;border-radius:8px;padding:10px 12px;cursor:pointer}
+.burger svg{width:24px;height:24px}
+
+/* ---------- FONDO ---------- */
+main{flex:1;position:relative;background:
+  linear-gradient(rgba(10,35,25,.35),rgba(10,35,25,.55)),
+  var(--fondo),
+  linear-gradient(160deg,#3b6b8f 0%,#5d8f5a 45%,#2f5a2c 100%);
+  background-size:cover;background-position:center;background-attachment:fixed}
+.pagina{display:none;animation:aparecer .45s ease}
+.pagina.visible{display:block}
+@keyframes aparecer{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ---------- HERO ---------- */
+.hero{min-height:calc(100vh - 80px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:60px 20px 40px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(1.7rem,4.5vw,3.2rem);font-weight:800;text-transform:uppercase;line-height:1.15;max-width:1000px;text-shadow:0 3px 14px rgba(0,0,0,.5)}
+.hero p{font-size:clamp(.95rem,1.8vw,1.25rem);font-weight:500;max-width:800px;margin-top:18px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.hero .tutor{margin-top:14px}
+.btns{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.btn{display:inline-block;padding:15px 30px;border-radius:40px;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.4px;cursor:pointer;transition:.25s;border:2px solid transparent;font-family:inherit}
+.btn-verde{background:var(--verde);color:#fff}
+.btn-verde:hover{background:var(--verde-osc);transform:translateY(-2px)}
+.btn-borde{border-color:#fff;color:#fff;background:rgba(0,0,0,.25)}
+.btn-borde:hover{background:#fff;color:var(--nav)}
+.btn-blanco{background:#fff;color:var(--texto);margin-top:60px;display:inline-flex;align-items:center;gap:8px}
+.btn-blanco:hover{transform:translateY(-2px)}
+.btn-blanco svg{width:16px;height:16px;transition:.3s}
+.btn-blanco.abierto svg{transform:rotate(180deg)}
+.equipo{max-height:0;overflow:hidden;transition:max-height .5s ease;width:100%;max-width:960px}
+.equipo.abierto{max-height:1400px}
+.equipo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:22px;background:rgba(255,255,255,.95);color:var(--texto);padding:22px;border-radius:var(--radio)}
+.miembro{display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;text-align:left}
+.miembro .av{flex:none;width:34px;height:34px;border-radius:50%;background:var(--verde);color:#fff;display:grid;place-items:center;font-size:.75rem;font-weight:700}
+
+/* Garzas animadas */
+.garza{position:absolute;opacity:.85;pointer-events:none}
+.vuela{animation:volar 18s linear infinite}
+@keyframes volar{from{transform:translateX(-10vw)}to{transform:translateX(110vw)}}
+
+/* ---------- PANEL DE PÁGINA ---------- */
+.panel{max-width:1180px;margin:28px auto 100px;background:rgba(255,255,255,.97);border-radius:var(--radio);padding:34px 30px 40px;box-shadow:var(--sombra);position:relative}
+.panel h2{text-align:center;font-size:clamp(1.25rem,2.6vw,1.9rem);font-weight:800}
+.panel .sub{text-align:center;font-weight:700;font-size:1rem;margin-top:4px}
+.panel .intro{text-align:center;color:var(--gris);margin:8px auto 26px;max-width:780px}
+.num-pag{position:absolute;right:0;bottom:-38px;background:#fff;padding:6px 14px;font-weight:700;font-size:.85rem;border-radius:8px 0 0 0}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{border:1.5px solid #cfd8d3;border-radius:var(--radio);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(0,0,0,.12)}
+.card-head{background:var(--verde);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;min-height:86px}
+.card-head .ic{flex:none;width:58px;height:58px;background:#fff;border-radius:12px;display:grid;place-items:center;font-size:1.9rem}
+.card-head h3{font-size:.95rem;font-weight:800;text-transform:uppercase;line-height:1.2;text-align:center;flex:1}
+.card-head small{display:block;font-weight:600;text-transform:none;font-size:.78rem;opacity:.9}
+.card-body{padding:18px 20px;flex:1;font-size:.88rem}
+.card-body ul{padding-left:18px}
+.card-body li{margin-bottom:6px}
+.ilus{font-size:3.4rem;text-align:center;margin:6px 0 10px;letter-spacing:4px}
+.card-body h4{text-align:center;font-size:1.05rem;margin-bottom:12px}
+.item{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.item .e{flex:none;font-size:1.5rem;width:34px;text-align:center}
+.card-foot{padding:0 18px 16px;text-align:center}
+.card-foot .btn{width:100%;padding:12px}
+.card-foot small{display:block;margin-top:8px;font-size:.72rem;color:var(--gris);font-weight:600}
+
+h3.titulo-sec{font-size:1.2rem;font-weight:800;margin:34px 0 16px;text-align:center}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:10px}
+.split>div:first-child{border-right:1.5px solid #d8e0db;padding-right:26px}
+.herr{display:flex;gap:14px;align-items:center;margin-bottom:14px;font-size:.86rem}
+.herr .e{flex:none;width:58px;height:46px;border-radius:8px;background:var(--verde-claro);display:grid;place-items:center;font-size:1.6rem}
+.herr .gimkit{background:#2d3fb3;color:#fff;font-weight:800;font-size:.72rem}
+.metodo{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center;font-size:.82rem}
+.metodo .e{font-size:2.6rem;margin-bottom:6px}
+.metodo b{display:block;margin-bottom:4px}
+
+/* Línea de pasos */
+.pasos{display:flex;align-items:center;justify-content:space-between;margin:10px 0 18px;position:relative}
+.pasos::before{content:"";position:absolute;left:10px;right:30px;top:50%;height:6px;background:linear-gradient(90deg,var(--verde),#9bd2ad);border-radius:3px;z-index:0}
+.paso{position:relative;z-index:1;width:30px;height:30px;border-radius:50%;background:var(--verde);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.85rem;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.paso.meta{width:auto;border-radius:6px;padding:0 8px;font-size:.62rem;background:var(--verde-osc)}
+
+/* Mosaico */
+.mosaico{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.hito{text-align:center;cursor:pointer;border-radius:12px;padding:12px 6px;transition:.25s;background:var(--verde-claro);border:1.5px solid transparent}
+.hito:hover{border-color:var(--verde);transform:translateY(-4px)}
+.hito .e{font-size:2.8rem}
+.hito b{display:block;font-size:.72rem;text-transform:uppercase;margin-top:6px;line-height:1.25}
+.hito span{display:block;font-size:.7rem;font-weight:800;color:var(--verde-osc);text-transform:uppercase}
+.galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:22px}
+.foto{aspect-ratio:4/3;border-radius:10px;background:linear-gradient(135deg,#cfe6d6,#8fc4a0);display:grid;place-items:center;color:var(--verde-osc);font-size:.75rem;font-weight:700;text-align:center;padding:8px;overflow:hidden}
+.foto img{width:100%;height:100%;object-fit:cover}
+
+/* Contexto / textos */
+.texto p{margin-bottom:14px;font-size:.95rem}
+.datos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}
+.dato{background:var(--verde-claro);border-radius:12px;padding:18px;text-align:center}
+.dato .e{font-size:2rem}
+.dato b{display:block;font-size:1.4rem;color:var(--verde-osc)}
+.dato small{font-size:.78rem;color:var(--gris);font-weight:600}
+.cita{border-left:5px solid var(--verde);background:var(--verde-claro);padding:16px 20px;border-radius:0 10px 10px 0;font-style:italic;margin:20px 0}
+.biblio li{margin-bottom:12px;padding-left:2.2em;text-indent:-2.2em;list-style:none;font-size:.9rem}
+
+/* ---------- BARRA INFERIOR ---------- */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(220,228,224,.92);backdrop-filter:blur(6px);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.barra button{background:var(--nav);color:#fff;border:none;border-radius:30px;padding:11px 22px;font-family:inherit;font-weight:700;font-size:.82rem;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.2s}
+.barra button:hover:not(:disabled){background:var(--verde-osc)}
+.barra button:disabled{opacity:.35;cursor:default}
+.nrc{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.85rem}
+.nrc i{font-style:normal;width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid var(--nav);display:grid;place-items:center;font-size:.62rem;font-weight:800}
+
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.abierto{display:flex}
+.modal-box{background:#fff;border-radius:var(--radio);max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:28px;position:relative;animation:aparecer .3s}
+.modal-box h3{color:var(--verde-osc);margin-bottom:6px}
+.cerrar{position:absolute;top:12px;right:14px;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--gris)}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1100px){
+  .burger{display:block}
+  nav{position:absolute;top:100%;right:16px;left:16px;display:none}
+  nav.abierto{display:block}
+  nav ul{flex-direction:column}
+}
+@media(max-width:900px){
+  .grid3,.grid2,.split{grid-template-columns:1fr}
+  .split>div:first-child{border-right:none;padding-right:0}
+  .mosaico{grid-template-columns:repeat(3,1fr)}
+  .datos{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .panel{padding:24px 16px 30px;margin:16px 10px 100px}
+  .mosaico{grid-template-columns:repeat(2,1fr)}
+  .metodo{grid-template-columns:1fr}
+  .barra{padding:8px 10px}
+  .barra button{padding:10px 14px;font-size:.7rem}
+  .nrc span{display:none}
+  .logo span{font-size:.9rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="header-in">
+    <div class="logo" onclick="irA('inicio')">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#e8f4ec" stroke="#2a4a40" stroke-width="2"/>
+        <path d="M6 44 Q20 36 32 44 T58 44 L58 50 Q46 58 32 58 Q18 58 6 50Z" fill="#2b8a4e"/>
+        <path d="M12 46 L14 30 M18 46 L19 34 M48 46 L49 32 M53 46 L52 36" stroke="#1e6b3c" stroke-width="2"/>
+        <path d="M30 44 C24 38 26 28 32 24 C34 18 32 12 36 10 C40 9 42 12 40 14 L46 15 L40 16 C38 20 40 26 38 30 C42 34 40 42 34 44Z" fill="#fff" stroke="#2a4a40" stroke-width="1.6"/>
+        <circle cx="38" cy="12" r="1" fill="#2a4a40"/>
+      </svg>
+      <span>GUARDIANES<br>DEL HUMEDAL</span>
+    </div>
+    <button class="burger" aria-label="Abrir menú" onclick="document.querySelector('nav').classList.toggle('abierto')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav>
+      <ul id="menu"></ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= 1. INICIO ================= -->
+<section class="pagina" id="inicio">
+  <div class="hero">
+    <svg class="garza vuela" style="top:18%;width:90px" viewBox="0 0 100 50"><path d="M5 30 Q30 5 50 25 Q70 5 95 28 Q70 18 52 32 L48 40 L46 32 Q28 18 5 30Z" fill="#fff"/></svg>
+    <svg class="garza vuela" style="top:30%;width:60px;animation-delay:-9s;animation-duration:24s" viewBox="0 0 100 50"><path d="M5 30 Q30 5 50 25 Q70 5 95 28 Q70 18 52 32 L48 40 L46 32 Q28 18 5 30Z" fill="#fff"/></svg>
+
+    <h1>Guardianes del Humedal: Pequeñas acciones, grandes cambios</h1>
+    <p>Proyecto de Formación Comunícate (NRC 50-73242) – Corporación Universitaria Minuto de Dios (UNIMINUTO)</p>
+    <p class="tutor">Tutor(a): Diana Marcela Patiño Bautista</p>
+    <div class="btns">
+      <a class="btn btn-verde" href="#contexto">Descubre nuestro proyecto</a>
+      <a class="btn btn-borde" href="#solucion">Únete a la acción</a>
+    </div>
+    <button class="btn btn-blanco" id="btnEquipo" onclick="toggleEquipo()">
+      Ver equipo de trabajo (17 estudiantes integrantes)
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="equipo" id="equipo"><div class="equipo-grid" id="equipoGrid"></div></div>
+  </div>
+</section>
+
+<!-- ================= 2. CONTEXTO ================= -->
+<section class="pagina" id="contexto">
+  <div class="panel">
+    <h2>Página 2: Contexto y Problemática</h2>
+    <p class="sub">(Diagnóstico del territorio – Punto 1 de la Ruta de Aprendizaje)</p>
+    <p class="intro">El Humedal Juan Amarillo y su entorno comunitario en el sector Quirigua F.</p>
+
+    <div class="datos">
+      <div class="dato"><div class="e">🌿</div><b>Humedal</b><small>Juan Amarillo (Tibabuyes)</small></div>
+      <div class="dato"><div class="e">🏘️</div><b>JAC</b><small>Quirigua F – aliado comunitario</small></div>
+      <div class="dato"><div class="e">🕊️</div><b>Aves</b><small>Garzas y fauna local</small></div>
+      <div class="dato"><div class="e">👥</div><b>17</b><small>Estudiantes UNIMINUTO</small></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-head"><div class="ic">📍</div><h3>El territorio<small>Ecosistema y comunidad</small></h3></div>
+        <div class="card-body texto">
+          <p>El Humedal Juan Amarillo es uno de los ecosistemas más importantes de Bogotá: regula el agua, alberga aves residentes y migratorias y es un espacio vital para las comunidades vecinas.</p>
+          <p>A su alrededor conviven barrios, comerciantes de la plaza de mercado de Quirigua y procesos comunitarios como el Ecobarrio Colsubsidio y su huerta.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">⚠️</div><h3>La problemática<small>Lo que identificamos</small></h3></div>
+        <div class="card-body">
+          <div class="item"><div class="e">🗑️</div><div><b>Disposición inadecuada de residuos</b> en la ronda del humedal y puntos críticos.</div></div>
+          <div class="item"><div class="e">⛺</div><div><b>Cambuches y zonas sin vigilancia</b> que afectan la seguridad y el ecosistema.</div></div>
+          <div class="item"><div class="e">♻️</div><div><b>Baja separación en la fuente</b> y poco conocimiento sobre reciclaje.</div></div>
+          <div class="item"><div class="e">🦆</div><div><b>Desconocimiento de la biodiversidad</b> local y de la importancia del humedal.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cita">“Pequeñas acciones, grandes cambios”: creemos que la educomunicación ambiental puede transformar la relación de la comunidad con su humedal.</div>
+    <span class="num-pag">Página 2</span>
+  </div>
+</section>
+
+<!-- ================= 3. SOLUCIÓN ================= -->
+<section class="pagina" id="solucion">
+  <div class="panel">
+    <h2>Página 3: Análisis de la Solución Mínima Viable</h2>
+    <p class="sub">(Basado en el Diseño y Co-Creación de SMV – Entregable 2)</p>
+    <p class="intro">Análisis de la estrategia híbrida de educomunicación ambiental “Guardianes del Humedal”.</p>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-head"><div class="ic">🧒</div><h3>Estación 1:<br>Aprender Jugando</h3></div>
+        <div class="card-body"><ul>
+          <li><b>Título:</b> Aprender Jugando: Jornada educativa lúdica.</li>
+          <li><b>Descripción:</b> Actividad de 30–45 min con Gimkit para niños, jóvenes y familias.</li>
+          <li><b>Temas:</b> Separación de residuos, biodiversidad del humedal.</li>
+          <li><b>Propósito:</b> Conocimiento y sensibilización ambiental inicial.</li>
+          <li><b>Insumos:</b> Tabletas, Gimkit.</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">🌱</div><h3>Estación 2:<br>Actuar en el Territorio</h3></div>
+        <div class="card-body"><ul>
+          <li><b>Título:</b> Actuar en el Territorio: Recolección guiada.</li>
+          <li><b>Descripción:</b> Jornada práctica de limpieza y cuidado de la huerta comunitaria.</li>
+          <li><b>Acciones:</b> Recolección selectiva de residuos (aprovechables, no aprovechables), cuidado de plantas.</li>
+          <li><b>Propósito:</b> Experiencia práctica, sentido de pertenencia territorial.</li>
+          <li><b>Insumos:</b> Guantes, bolsas, herramientas de jardinería.</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">🏅</div><h3>Estación 3:<br>Comprometerse</h3></div>
+        <div class="card-body"><ul>
+          <li><b>Título:</b> Comprometerse: Pacto Verde y Reconocimiento.</li>
+          <li><b>Descripción:</b> Firma de pacto y entrega de reconocimiento simbólico.</li>
+          <li><b>Elementos:</b> Firma de compromiso (Pacto Verde), reconocimiento como “Guardián del Humedal”, entrega de cartilla o afiche ilustrado.</li>
+          <li><b>Propósito:</b> Fortalecer el compromiso, continuidad de hábitos.</li>
+          <li><b>Insumos:</b> Pacto impreso, reconocimientos, cartillas, afiches.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="split" id="evaluacion">
+      <div>
+        <h3 class="titulo-sec">Herramientas de Educomunicación Evaluadas</h3>
+        <div class="herr"><div class="e gimkit">Gimkit</div><div><b>Juego digital en Gimkit</b><br>Cuestionario interactivo sobre biodiversidad, residuos y buenas prácticas.</div></div>
+        <div class="herr"><div class="e">🃏</div><div><b>Juego de memoria ambiental físico</b><br>Dinámica presencial con fichas de fauna local y retos ecológicos.</div></div>
+        <div class="herr"><div class="e">📜</div><div><b>Pacto Verde y Material Educativo</b><br>Firma de compromiso comunitario con cartilla o afiche de hábitos.</div></div>
+      </div>
+      <div>
+        <h3 class="titulo-sec">Método de Evaluación de la SMV</h3>
+        <div class="metodo">
+          <div><div class="e">📋</div><b>Encuestas de conocimientos antes y después</b>Comparación de respuestas sobre importancia del humedal y manejo de residuos.</div>
+          <div><div class="e">🔭</div><b>Observación directa</b>Registro de participación, interés y comprensión durante las actividades.</div>
+          <div><div class="e">🙌</div><b>Registros de participación</b>Número de participantes, kilos de residuos, compromisos firmados.</div>
+        </div>
+      </div>
+    </div>
+    <span class="num-pag">Página 3</span>
+  </div>
+</section>
+
+<!-- ================= 4. LOGROS ================= -->
+<section class="pagina" id="logros">
+  <div class="panel">
+    <h2>Página 4: Principales Logros, Oportunidades de Mejora y Recomendaciones</h2>
+    <p class="sub">(Puntos 2 y 3 de la Ruta de Aprendizaje)</p>
+    <p class="intro">Análisis de impacto, áreas de oportunidad y hoja de ruta para la sostenibilidad.</p>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-head"><div class="ic">✅</div><h3>Sección 1:<br>Logros Alcanzados<small>(Tarjetas de Éxito)</small></h3></div>
+        <div class="card-body">
+          <div class="ilus">👨‍👩‍👧‍👦📜</div>
+          <h4>Logros Alcanzados</h4>
+          <div class="item"><div class="e">👪</div><div><b>Sensibilización</b> activa de niños, jóvenes y familias de la comunidad.</div></div>
+          <div class="item"><div class="e">🌱</div><div><b>Apropiación comunitaria</b> de la huerta y los espacios naturales del humedal.</div></div>
+          <div class="item"><div class="e">🤝</div><div><b>Articulación efectiva</b> entre la academia (UNIMINUTO), la JAC Quirigua F y Aguas Bogotá.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">🔍</div><h3>Sección 2:<br>Oportunidades de Mejora<small>(Bloque de Análisis)</small></h3></div>
+        <div class="card-body">
+          <div class="ilus">📋🗑️</div>
+          <h4>Oportunidades de Mejora</h4>
+          <div class="item"><div class="e">👁️</div><div>Necesidad de mayor <b>continuidad</b> en la vigilancia de puntos críticos y cambuches.</div></div>
+          <div class="item"><div class="e">♻️</div><div>Mayor <b>constancia</b> en los <b>talleres prácticos</b> de separación en la fuente para consolidar hábitos duraderos.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">🗺️</div><h3>Sección 3:<br>Estado de la Solución y Hoja de Ruta<small>(Línea de Pasos)</small></h3></div>
+        <div class="card-body">
+          <div class="pasos"><div class="paso">1</div><div class="paso">2</div><div class="paso">3</div><div class="paso">4</div><div class="paso meta">SOSTENIBILIDAD</div></div>
+          <h4>Estado de la Solución y Hoja de Ruta</h4>
+          <div class="item"><div class="e">🧰</div><div><b>Estado actual:</b> Implementación piloto con prototipos funcionales (juegos, cartillas, Pacto Verde) entregados formalmente a la JAC Quirigua F.</div></div>
+          <div class="item"><div class="e">🧭</div><div><b>Hoja de ruta para siguientes grupos:</b> Pasos recomendados para dar continuidad, seguimiento a compromisos y ampliación de cobertura en el sector.</div></div>
+        </div>
+      </div>
+    </div>
+    <span class="num-pag">Página 4</span>
+  </div>
+</section>
+
+<!-- ================= 5. MULTIMEDIA ================= -->
+<section class="pagina" id="multimedia">
+  <div class="panel">
+    <h2>Página 5: Centro de Recursos y Multimedia</h2>
+    <p class="sub">(Punto 4 de la Ruta de Aprendizaje – Evidencias Documentales)</p>
+    <p class="intro">Explora y accede a los materiales educomunicativos creados para el Humedal Juan Amarillo.</p>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-head"><div class="ic">📖</div><h3>Sección 1:<br>Revista Digital y Pódcast<small>(Tarjetas Interactivas)</small></h3></div>
+        <div class="card-body">
+          <div class="ilus">📘🎙️</div>
+          <div class="item"><div class="e">🌿</div><div>Destaca la fauna, flora y la importancia ecológica del ecosistema.</div></div>
+          <div class="item"><div class="e">🎓</div><div>Material didáctico para la comunidad.</div></div>
+          <div class="item"><div class="e">🎧</div><div>Pódcast educomunicativo: <b>“Voces por el agua”</b>.</div></div>
+        </div>
+        <div class="card-foot">
+          <!-- Reemplaza # por el enlace de Canva/Drive -->
+          <a class="btn btn-verde" href="#" target="_blank" rel="noopener">Leer revista educativa</a>
+          <a class="btn btn-verde" href="#" target="_blank" rel="noopener" style="margin-top:8px">Escuchar pódcast</a>
+          <small>NRC 50-73242</small>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">🎥</div><h3>Sección 2:<br>Entrevistas y Registro Audiovisual<small>(Testimonios del Territorio)</small></h3></div>
+        <div class="card-body">
+          <div class="ilus">🏪🏡</div>
+          <div class="item"><div class="e">🧺</div><div><b>Entrevistas Mercado Quirigua:</b> testimonios de comerciantes.</div></div>
+          <div class="item"><div class="e">🌻</div><div><b>Ecobarrio Colsubsidio:</b> testimonios de guardianas sobre la apropiación de la huerta y cuidado territorial.</div></div>
+          <div class="item"><div class="e">👍</div><div>Historias de éxito comunitario.</div></div>
+        </div>
+        <div class="card-foot">
+          <!-- Reemplaza # por el enlace de YouTube/Drive -->
+          <a class="btn btn-verde" href="#" target="_blank" rel="noopener">Ver entrevistas</a>
+          <small>NRC 50-73242</small>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">🪧</div><h3>Sección 3:<br>Señales Éticas y Códigos QR<small>(Instalación en Campo)</small></h3></div>
+        <div class="card-body">
+          <div class="ilus">🪧🏅</div>
+          <div class="item"><div class="e">📍</div><div><b>Señales pedagógicas instaladas:</b> muestra visual de los carteles en la ronda del humedal.</div></div>
+          <div class="item"><div class="e">🔳</div><div>Diseños con códigos QR para información interactiva.</div></div>
+          <div class="item"><div class="e">📜</div><div><b>Reconocimiento simbólico y Pacto Verde:</b> pacto impreso, material educativo y afiches de hábitos.</div></div>
+        </div>
+        <div class="card-foot">
+          <!-- Reemplaza # por los enlaces de Drive -->
+          <a class="btn btn-verde" href="#" target="_blank" rel="noopener">Ver diseños</a>
+          <a class="btn btn-verde" href="#" target="_blank" rel="noopener" style="margin-top:8px">Ver materiales</a>
+          <small>NRC 50-73242</small>
+        </div>
+      </div>
+    </div>
+    <span class="num-pag">Página 5</span>
+  </div>
+</section>
+
+<!-- ================= 6. EVIDENCIAS ================= -->
+<section class="pagina" id="evidencias">
+  <div class="panel">
+    <h2>Página 6: Evidencias del Desarrollo de las Acciones</h2>
+    <p class="sub">(Continuación del Punto 4 de la Ruta de Aprendizaje – Evidencias Documentales)</p>
+    <p class="intro">Explora la galería cronológica de nuestras intervenciones y talleres en campo. Haz clic en cada hito para ver el detalle.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-head"><div class="ic">🖼️</div><h3>Sección 1:<br>Galería Fotográfica Cronológica<small>(Mosaico Interactivo)</small></h3></div>
+        <div class="card-body"><ul>
+          <li>Visualización cronológica de las acciones ordenadas según el cronograma de trabajo en campo.</li>
+          <li>Cada fecha cuenta con íconos ilustrativos y pies de foto detallados de la actividad realizada.</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">📅</div><h3>Sección 2:<br>Línea de Tiempo Visual<small>(Hitos Clave)</small></h3></div>
+        <div class="card-body"><ul>
+          <li>Resumen gráfico de las 6 intervenciones principales, con sus logros y actores clave.</li>
+          <li>Incluye testimonios y resultados de cada sesión: biodiversidad registrada, señales instaladas, testimonios de comerciantes y guardianas.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <h3 class="titulo-sec">Mosaico de Evidencias</h3>
+    <div class="mosaico" id="mosaico"></div>
+
+    <h3 class="titulo-sec">Galería</h3>
+    <div class="galeria" id="galeria"></div>
+    <span class="num-pag">Página 6</span>
+  </div>
+</section>
+
+<!-- ================= 7. APRENDIZAJES ================= -->
+<section class="pagina" id="aprendizajes">
+  <div class="panel">
+    <h2>Página 7: Aprendizajes y Reflexiones</h2>
+    <p class="sub">(Cierre de la Ruta de Aprendizaje)</p>
+    <p class="intro">Lo que nos llevamos como estudiantes, como equipo y como ciudadanos.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-head"><div class="ic">🎓</div><h3>Aprendizaje<br>académico</h3></div>
+        <div class="card-body"><p>Aplicamos la educomunicación como herramienta para transformar realidades: diagnosticar, co-crear una solución mínima viable y evaluarla con la comunidad.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">🤝</div><h3>Aprendizaje<br>comunitario</h3></div>
+        <div class="card-body"><p>Escuchar a comerciantes, guardianas y líderes de la JAC nos enseñó que las soluciones funcionan cuando se construyen <b>con</b> la comunidad, no <b>para</b> ella.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="ic">💚</div><h3>Aprendizaje<br>personal</h3></div>
+        <div class="card-body"><p>Descubrimos el valor del humedal como hogar de la biodiversidad y asumimos el compromiso de ser, nosotros también, Guardianes del Humedal.</p></div>
+      </div>
+    </div>
+    <div class="cita">“El cuidado del humedal no termina con el proyecto: comienza con cada compromiso firmado en el Pacto Verde.”</div>
+    <span class="num-pag">Página 7</span>
+  </div>
+</section>
+
+<!-- ================= 8. BIBLIOGRAFÍA ================= -->
+<section class="pagina" id="bibliografia">
+  <div class="panel">
+    <h2>Página 8: Bibliografía</h2>
+    <p class="intro">Referencias consultadas (normas APA 7.ª edición). Edita o completa esta lista con las fuentes de tu informe.</p>
+    <ul class="biblio">
+      <li>Kaplún, M. (1998). <i>Una pedagogía de la comunicación</i>. Ediciones de la Torre.</li>
+      <li>Secretaría Distrital de Ambiente. (s.f.). <i>Humedal Juan Amarillo o Tibabuyes</i>. Alcaldía Mayor de Bogotá.</li>
+      <li>Empresa de Acueducto y Alcantarillado de Bogotá. (s.f.). <i>Humedales de Bogotá</i>. EAAB.</li>
+      <li>Corporación Universitaria Minuto de Dios – UNIMINUTO. (2026). <i>Guía del Proyecto de Formación Comunícate</i>. UNIMINUTO.</li>
+      <li>Equipo Guardianes del Humedal. (2026). <i>Diseño y co-creación de la Solución Mínima Viable (Entregable 2)</i>. UNIMINUTO.</li>
+    </ul>
+    <span class="num-pag">Página 8</span>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= BARRA INFERIOR ================= -->
+<div class="barra">
+  <button id="btnPrev" onclick="mover(-1)">‹ <span>Página anterior</span></button>
+  <div class="nrc"><i>NRC</i><span>NRC-50-73242</span></div>
+  <button id="btnNext" onclick="mover(1)"><span>Siguiente página</span> ›</button>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div class="modal" id="modal" onclick="if(event.target===this)cerrarModal()">
+  <div class="modal-box">
+    <button class="cerrar" onclick="cerrarModal()" aria-label="Cerrar">×</button>
+    <div id="modalContenido"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- CONFIGURACIÓN ---------- */
+const paginas = [
+  {id:'inicio',       nombre:'Inicio'},
+  {id:'contexto',     nombre:'Contexto'},
+  {id:'solucion',     nombre:'Solución (SMV)'},
+  {id:'logros',       nombre:'Logros'},
+  {id:'multimedia',   nombre:'Multimedia'},
+  {id:'evidencias',   nombre:'Evidencias'},
+  {id:'aprendizajes', nombre:'Aprendizajes'},
+  {id:'bibliografia', nombre:'Bibliografía'}
+];
+
+/* Escribe aquí los nombres reales de los 17 integrantes */
+const equipo = [
+  'Integrante 1','Integrante 2','Integrante 3','Integrante 4','Integrante 5',
+  'Integrante 6','Integrante 7','Integrante 8','Integrante 9','Integrante 10',
+  'Integrante 11','Integrante 12','Integrante 13','Integrante 14','Integrante 15',
+  'Integrante 16','Integrante 17'
+];
+
+/* Hitos de la línea de tiempo. En "fotos" pon rutas como 'img/12sep-1.jpg' */
+const hitos = [
+  {fecha:'12 Septiembre', titulo:'Reconocimiento y recolección', e:'🗑️',
+   texto:'Recorrido de reconocimiento del territorio y primera jornada de recolección de residuos en la ronda del humedal.', fotos:[]},
+  {fecha:'26 Septiembre', titulo:'Caminata y registro de aves', e:'🐦',
+   texto:'Caminata de observación de aves con registro de biodiversidad usando la aplicación Merlin Bird ID.', fotos:[]},
+  {fecha:'3 Octubre', titulo:'Señales éticas y QR', e:'🪧',
+   texto:'Instalación de señales pedagógicas con códigos QR en puntos estratégicos del humedal.', fotos:[]},
+  {fecha:'17 Octubre', titulo:'Visita Ecobarrio y huerta', e:'🌱',
+   texto:'Visita al Ecobarrio y jornada en la huerta comunitaria con el Colectivo Somos Uno.', fotos:[]},
+  {fecha:'24 Octubre', titulo:'Ruta desagüe y entrevistas plaza', e:'🏪',
+   texto:'Recorrido por la ruta del desagüe y entrevistas a comerciantes de la plaza de mercado de Quirigua.', fotos:[]},
+  {fecha:'7 Noviembre', titulo:'Miniferia ambiental de cierre', e:'🎪',
+   texto:'Miniferia ambiental con las tres estaciones (Aprender Jugando, Actuar en el Territorio, Comprometerse) y firma del Pacto Verde.', fotos:[]}
+];
+
+/* ---------- MENÚ ---------- */
+const menu = document.getElementById('menu');
+paginas.forEach(p=>{
+  const li=document.createElement('li');
+  li.innerHTML=`<a href="#${p.id}" data-id="${p.id}">${p.nombre}</a>`;
+  menu.appendChild(li);
+});
+
+/* ---------- EQUIPO ---------- */
+document.getElementById('equipoGrid').innerHTML = equipo.map(n=>{
+  const ini=n.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
+  return `<div class="miembro"><div class="av">${ini}</div>${n}</div>`;
+}).join('');
+function toggleEquipo(){
+  document.getElementById('equipo').classList.toggle('abierto');
+  document.getElementById('btnEquipo').classList.toggle('abierto');
+}
+
+/* ---------- MOSAICO Y GALERÍA ---------- */
+document.getElementById('mosaico').innerHTML = hitos.map((h,i)=>
+  `<div class="hito" onclick="abrirHito(${i})"><div class="e">${h.e}</div><span>${h.fecha}</span><b>${h.titulo}</b></div>`
+).join('');
+document.getElementById('galeria').innerHTML = hitos.map(h=>
+  h.fotos.length ? h.fotos.map(f=>`<div class="foto"><img src="${f}" alt="${h.titulo}" loading="lazy"></div>`).join('')
+  : `<div class="foto">📷<br>${h.fecha}<br>${h.titulo}</div>`
+).join('');
+function abrirHito(i){
+  const h=hitos[i];
+  const fotos = h.fotos.length
+    ? `<div class="galeria">${h.fotos.map(f=>`<div class="foto"><img src="${f}" alt=""></div>`).join('')}</div>`
+    : `<div class="galeria"><div class="foto">📷 Agrega aquí las fotos de esta jornada</div></div>`;
+  document.getElementById('modalContenido').innerHTML =
+    `<div style="font-size:3rem">${h.e}</div><h3>${h.fecha}: ${h.titulo}</h3><p>${h.texto}</p>${fotos}`;
+  document.getElementById('modal').classList.add('abierto');
+}
+function cerrarModal(){document.getElementById('modal').classList.remove('abierto')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarModal()});
+
+/* ---------- NAVEGACIÓN ---------- */
+let actual=0;
+function irA(id){location.hash=id}
+function mostrar(){
+  let id=location.hash.replace('#','')||'inicio';
+  if(id==='evaluacion'){id='solucion';setTimeout(()=>document.getElementById('evaluacion').scrollIntoView(),50)}
+  let idx=paginas.findIndex(p=>p.id===id);
+  if(idx<0)idx=0;
+  actual=idx;
+  document.querySelectorAll('.pagina').forEach(s=>s.classList.toggle('visible',s.id===paginas[idx].id));
+  document.querySelectorAll('#menu a').forEach(a=>a.classList.toggle('activo',a.dataset.id===paginas[idx].id));
+  document.getElementById('btnPrev').disabled = idx===0;
+  document.getElementById('btnNext').disabled = idx===paginas.length-1;
+  document.querySelector('nav').classList.remove('abierto');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function mover(d){
+  const n=actual+d;
+  if(n>=0&&n<paginas.length)irA(paginas[n].id);
+}
+window.addEventListener('hashchange',mostrar);
+mostrar();
+</script>
+</body>
+</html>
