@@ -255,6 +255,27 @@ h3.titulo-sec{font-size:1.2rem;font-weight:800;margin:34px 0 16px;text-align:cen
 .hito-ico .ico{width:88px;height:88px}
 .qr-card h4 .ico{width:30px;height:30px;margin-right:4px}
 .clave p .ico{width:1.35em;height:1.35em;vertical-align:-4px}
+/* ---------- APRENDIZAJES ---------- */
+.ap-sub{font-size:.95rem;font-weight:800;color:var(--verde-osc);margin:6px 0 10px;text-align:left!important}
+.ap-lista{list-style:none;padding:0!important}
+.ap-lista li{position:relative;padding-left:26px;margin-bottom:10px;font-size:.9rem;line-height:1.5}
+.ap-lista li::before{content:"";position:absolute;left:4px;top:.45em;width:11px;height:11px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 3px var(--verde-claro)}
+.tabla-wrap{overflow-x:auto;border-radius:var(--radio);border:1.5px solid #cfd8d3}
+.coeval{width:100%;border-collapse:collapse;font-size:.88rem;background:#fff}
+.coeval th{background:var(--verde);color:#fff;text-transform:uppercase;font-size:.8rem;letter-spacing:.3px;padding:12px 14px;text-align:left}
+.coeval td{padding:14px;vertical-align:top;border-top:1px solid #dfe7e2;line-height:1.5}
+.coeval tr:nth-child(even) td{background:var(--verde-claro)}
+.coeval td:first-child{width:18%;color:var(--verde-osc)}
+.reflexion{background:var(--verde-claro);border-left:5px solid var(--verde);border-radius:0 var(--radio) var(--radio) 0;padding:22px 26px}
+.reflexion p{margin-bottom:14px;font-size:.95rem;line-height:1.6}
+.reflexion p:last-child{margin-bottom:0}
+@media(max-width:700px){
+  .coeval thead{display:none}
+  .coeval tr{display:block;border-top:1px solid #dfe7e2}
+  .coeval td{display:block;border:none;width:auto!important;padding:8px 14px}
+  .coeval td::before{content:attr(data-l);display:block;font-size:.72rem;font-weight:800;text-transform:uppercase;color:var(--gris)}
+  .reflexion{padding:18px}
+}
 </style>
 </head>
 <body>
@@ -548,21 +569,52 @@ h3.titulo-sec{font-size:1.2rem;font-weight:800;margin:34px 0 16px;text-align:cen
     <h2>Aprendizajes y Reflexiones</h2>
     <p class="sub">(Cierre de la Ruta de Aprendizaje)</p>
     <p class="intro">Lo que nos llevamos como estudiantes, como equipo y como ciudadanos.</p>
-    <div class="grid3">
+    <div class="grid2">
       <div class="card">
-        <div class="card-head"><div class="ic"><img class="ico icof" src="img/ico/q-014.jpg" alt=""></div><h3>Aprendizaje<br>académico</h3></div>
-        <div class="card-body"><p>Aplicamos la educomunicación como herramienta para transformar realidades: diagnosticar, co-crear una solución mínima viable y evaluarla con la comunidad.</p></div>
+        <div class="card-head"><div class="ic"><img class="ico icof" src="img/ico/q-014.jpg" alt=""></div><h3>Aprendizaje académico</h3></div>
+        <div class="card-body texto">
+          <p>Durante la práctica se pudo conocer el territorio de una manera más consciente y real. Lo que inició como una práctica de responsabilidad social se volvió una experiencia de actuar consciente que busca fomentar el respeto por el ecosistema, por las fuentes hídricas, por las especies y su hábitat, y, sobre todo, un llamado a incentivar aquellas acciones comunitarias encaminadas a dignificar el territorio a través de la justicia social y la ecología integral.</p>
+          <h4 class="ap-sub">Lo más representativo que aprendimos académicamente</h4>
+          <ul class="ap-lista">
+          <li><b>Analizar los contextos de forma integral.</b> Esto se logró gracias a la realización de la cartografía social, el árbol de problemas y la cocreación de soluciones con potencial de viabilidad significativa.</li>
+          <li><b>Pensar con el ánimo de cambiar.</b> Cada visita tuvo por finalidad identificar un territorio y una problemática, y fomentar de inmediato una idea para mejorar o contribuir al territorio y su bienestar.</li>
+          <li><b>Creer que somos parte de la solución.</b> Con actividades de limpieza, realización de señaléticas y embellecimiento de espacios, consideramos que cualquier persona puede fomentar soluciones.</li>
+          <li><b>Uso de herramientas digitales.</b> Cada pieza educomunicativa, como la revista, el podcast, las entrevistas, los juegos, entre otras, nos acerca a la comunidad y al territorio.</li>
+          </ul>
+        </div>
       </div>
       <div class="card">
-        <div class="card-head"><div class="ic"><img class="ico icof" src="img/ico/q-106.jpg" alt=""></div><h3>Aprendizaje<br>comunitario</h3></div>
-        <div class="card-body"><p>Escuchar a comerciantes, guardianas y líderes de la JAC nos enseñó que las soluciones funcionan cuando se construyen <b>con</b> la comunidad, no <b>para</b> ella.</p></div>
-      </div>
-      <div class="card">
-        <div class="card-head"><div class="ic"><img class="ico icof" src="img/ico/q-257.jpg" alt=""></div><h3>Aprendizaje<br>personal</h3></div>
-        <div class="card-body"><p>Descubrimos el valor del humedal como hogar de la biodiversidad y asumimos el compromiso de ser, nosotros también, Guardianes del Humedal.</p></div>
+        <div class="card-head"><div class="ic"><img class="ico icof" src="img/ico/q-106.jpg" alt=""></div><h3>Aprendizaje comunitario</h3></div>
+        <div class="card-body texto">
+          <p>Un aspecto relevante fue que la comunidad no fungió como espectador, sino que, por el contrario, nos transmitió su conocimiento de las vivencias, retos y dificultades que han enfrentado al proponer o realizar proyectos sociales para cuidar su entorno. Este tipo de experiencias permitieron que, como estudiantes, no solo identifiquemos las problemáticas, sino que adoptemos perspectivas con conocimiento propio derivado de la comunidad.</p>
+          <h4 class="ap-sub">Lo más representativo que aprendimos a nivel comunitario</h4>
+          <ul class="ap-lista">
+          <li><b>La unión comunitaria.</b> Escuchar a los miembros y representantes de la comunidad contribuyó a la creación de ideas que mitiguen o favorezcan las necesidades del entorno.</li>
+          <li><b>La escucha activa.</b> En las visitas, se pudo percibir que los relatos de la comunidad muestran a personas comprometidas y con vocación de cuidar; sin embargo, hay dificultades que deben tratarse, como la falta de pertenencia de otros miembros o incluso la falta de apoyo territorial.</li>
+          <li><b>Las acciones que educan.</b> Las comunidades han creado espacios como huertas, aulas ambientales y sitios donde puede interactuar la comunidad para ayudar, pero también para educar a la población, lo que contribuye al sentido de pertenencia y apropiación del entorno de los habitantes.</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="cita">“El cuidado del humedal no termina con el proyecto: comienza con cada compromiso firmado en el Pacto Verde.”</div>
+
+    <h3 class="titulo-sec">Coevaluación</h3>
+    <div class="tabla-wrap">
+      <table class="coeval">
+        <thead><tr><th>Criterio</th><th>Evidencia</th><th>Posible mejora</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Criterio"><b>Coordinación</b></td><td data-l="Evidencia">Cada sesión tuvo un ejercicio de planeación entre la docente, los estudiantes y los funcionarios de Aguas Bogotá. Se dejó el registro respectivo de lo pretendido y lo alcanzado en cada visita.</td><td data-l="Posible mejora">Se pueden realizar más actividades y con mayor frecuencia, para lograr una mayor inclusión comunitaria.</td></tr>
+          <tr><td data-l="Criterio"><b>Interacción con la comunidad</b></td><td data-l="Evidencia">Durante las visitas se procuró escuchar, entrevistar y fotografiar a la comunidad con su autorización. Esto permitió un conocimiento real y significativo de la realidad que tiene la comunidad.</td><td data-l="Posible mejora">Se propone interactuar con instituciones educativas que puedan unirse a la práctica social y en las aulas fomentar el conocimiento que se adquiere.</td></tr>
+          <tr><td data-l="Criterio"><b>Evidencias artísticas</b></td><td data-l="Evidencia">Durante las visitas se procuró dejar piezas educomunicativas para invitar a la comunidad a las sesiones, y tras la finalización de las mismas, se procuró utilizar afiches, entrevistas, podcasts, revistas, juegos de Gimkit, señaléticas y códigos QR que dejen huella y que queden de forma permanente en los espacios para un aporte continuo.</td><td data-l="Posible mejora">Se propone que las evidencias artísticas se realicen no solo con participación estudiantil, sino procurar que la comunidad intervenga en el proceso de realización, pues esto puede fomentar el sentido de pertenencia.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="titulo-sec">Reflexión grupal</h3>
+    <div class="reflexion">
+      <p>Esta actividad académica contribuyó a que, como estudiantes, aprendiéramos a identificar las necesidades comunitarias que en ocasiones vemos a diario, pero frente a las cuales hacemos caso omiso. De allí que entre septiembre y noviembre de 2026 pudimos realizar visitas para ver cómo los residuos y los escombros que dejan las personas alteran la comunidad, cómo los canales de agua se han visto contaminados por nuestras acciones y cómo, incluso, aquellas especies que no pueden hablar sufren por la afectación del entorno que las rodea, debido al daño de su hábitat o entorno.</p>
+      <p>Nuestro mayor aprendizaje es ver cómo 17 personas que no se conocían pudieron, de manera colectiva, entender la realidad comunitaria, procurar dialogar para alcanzar soluciones moderadas, alcanzables y de impacto para esas realidades, y cómo, a través de los diálogos con la comunidad y los gestores de Aguas Bogotá, se pudo realizar una intervención constante mediante pequeñas actividades como la recolección de desechos, la limpieza del ecobarrio, la implementación de señaléticas, los juegos, entre otras.</p>
+      <p>Descubrimos cómo todos, sin importar nuestras creencias, profesiones, áreas de trabajo o estudio, podemos transformar realidades colectivas. En nuestro caso particular, bastó con tener personas que nos guiaron y coordinaron, permitiendo que materializáramos las intenciones de bienestar que dialogamos como equipo, lo que nos deja la enseñanza de que <b>todos, sin importar ninguna situación, podemos ser parte del cambio que queremos.</b></p>
+    </div>
   </div>
 </section>
 
